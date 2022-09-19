@@ -8,14 +8,14 @@ The files in this repository are currently starting points aimed at exploring th
 
 ## Try it live
 
-**[`axiom.html`](asdasd)**
+**[`axiom.html`](https://self-replicating-html.netlify.app/axiom.html)**
 
 Proof of concept showing the mechanism for rendering a Quine and modifying and replacing itself with the modified version.
 
-**[`ouroboros.html`](asdasd)**
+**[`ouroboros.html`](https://self-replicating-html.netlify.app/ouroboros.html)**
 
 A game of snake that renders each iteration as a frame, using the source code as an interactive interface.
 
-**[`transmission.html`](asdasd)**
+**[`transmission.html`](https://self-replicating-html.netlify.app/transmission.html)**
 
 Each instance passes a hash of itself to its progeny, making it increasingly expensive to find the source code of the progenitor.
