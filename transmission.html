@@ -1,0 +1,15 @@
+<pre><script>(() => {
+  let { parentElement: o, innerHTML: a } = document.currentScript 
+  o.innerText = `<pre><script>${a}<\/script><\/pre>`
+  
+  // @ I am the first instance, before me there was night. @
+  
+  setTimeout(() => {
+    let s = document.createElement('script')
+    const hash = crypto.subtle.digest("SHA-512", new TextEncoder().encode(a)).then((x) => {
+      s.innerHTML = a.replace(/@\s(.*)\s@/, `@ ${Array.from(new Uint8Array(x)).map((b) => b.toString(16).padStart(2, '0')).join('')} @`);
+      o.appendChild(s);
+    });
+  }, 1200) 
+
+})()</script></pre>

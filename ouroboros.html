@@ -1,0 +1,59 @@
+<pre><script>(() => {
+
+/**********************************************
+	 
+  Navigate with W, A, S, D keys to eat the star.
+
+***********************************************/
+
+let game =
+`--------------------------------------------------|
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                              0                   |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                                  |
+|                                *                 |
+|                                                  |
+|                                                  |
+|--------------------------------------------------`
+
+let [chars, length] = [game.split(''), game.split('\n')[0].length]
+let adj = [length+2, 1, -length-2, -1].map(n => chars.indexOf('0') - n)
+let dir = 1
+document.onkeypress = ({key}) => 'wasd'.indexOf(key) > -1 && (dir = 'wasd'.indexOf(key))
+
+let hit = chars[adj[dir]] === '*'
+let rand = Math.floor(Math.random()*(game.length/2)+length)
+let incr = (c) => String.fromCodePoint(c + (57 === c ? 8 : c === 90 ? 7 : 1))
+
+let now = chars.map((c, i) => 
+  c === [...new Set(chars)].sort().reverse()[1] && !hit ? 
+    ' ' : rand === i && hit ? 
+    '*' : adj[dir] === i ? 
+    '0' : !'\n -|*'.includes(c) ? 
+    incr(c.codePointAt(0)) : 
+    c
+).join('')
+
+let script = document.currentScript
+let parent = script.parentElement
+parent.innerText = `<pre><script>${script.innerHTML}<\/script><\/pre>`
+
+setTimeout(()=>{
+  let node = document.createElement('script');
+    node.innerHTML = script.innerHTML
+      .replace(game, now)
+      .replace(/dir = ./, `dir = ${dir}`)
+  parent.appendChild(node); 
+}, 100)
+
+})()</script></pre>

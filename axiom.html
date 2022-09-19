@@ -1,0 +1,23 @@
+<pre><script>(() => {
+
+  let script = document.currentScript
+  let origin = script.parentElement
+  origin.innerText = `<pre><script>${script.innerHTML}<\/script><\/pre>`
+	
+
+  /****************************
+	 
+  I am instance 0.
+
+  *****************************/
+	
+
+  setTimeout(() => {
+    let i =  /nce\s(.*)\./
+    let child = document.createElement('script')
+    child.innerHTML = script.innerHTML.replace(i, `nce ${Number(origin.innerText.match(i)[1]) + 1}.`)
+    origin.appendChild(child)
+  }, script.innerHTML.length) 
+
+
+})()</script></pre>
